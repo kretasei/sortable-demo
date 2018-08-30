@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>HTML5Sortable DnD simulation</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="googlebot" content="noindex, nofollow">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script type="text/javascript" src="./lib/html5sortable.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="./style/style.css" />
+
+  <script type="text/javascript" src="./js/initSortable.js"></script>
+  <script type="text/javascript" src="./js/DragAndDrop.js"></script>
+</head>
+
+<body>
+  <div id="app" class="round-border">
+    <div id="toolbar">
+      <button onclick="moveToSource()">DnD item to Source</button>
+      <button onclick="moveToTarget()">DnD item to Target</button>
+    </div>
+
+    <div id="container" class="round-border">
+      <div class="round-border">
+        <span><b>#Target</b></span>
+        <ul id="target" class="sortable simple-list"></ul>
+      </div>
+
+      <div class="round-border">
+        <span><b>#Source</b></span>
+        <ul id="source" class="sortable simple-list round-border">
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    initSortable();
+
+    // TODO extract to function
+    const alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
+
+    const source = document.querySelector('#source');
+    const item = document.createElement('li');
+    source.appendChild(item);
+    for (let i = 0; i < 11; i++) {
+      const item = document.createElement('li');
+      const letter = alphabet[i];
+      item.id = letter;
+      item.innerText = letter.toUpperCase();
+      item.classList.add('draggable');
+      source.appendChild(item);
+    }
+  </script>
+</body>
+
+</html>
