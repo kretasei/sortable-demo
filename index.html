@@ -14,12 +14,14 @@
 
   <script type="text/javascript" src="./js/initSortable.js"></script>
   <script type="text/javascript" src="./js/DragAndDrop.js"></script>
+  <script type="text/javascript" src="./js/items.js"></script>
 </head>
 
 <body>
   <div id="app" class="round-border">
     <div id="toolbar">
       <button onclick="moveToSource()">DnD item to Source</button>
+      <button onclick="reset()">Reset</button>
       <button onclick="moveToTarget()">DnD item to Target</button>
     </div>
 
@@ -38,22 +40,33 @@
   </div>
 
   <script type="text/javascript">
-    initSortable();
+    reset();
 
-    // TODO extract to function
-    const alphabet = "abcdefghijklmnopqrstuvwxyz".split('');
-
-    const source = document.querySelector('#source');
-    const item = document.createElement('li');
-    source.appendChild(item);
-    for (let i = 0; i < 11; i++) {
-      const item = document.createElement('li');
-      const letter = alphabet[i];
-      item.id = letter;
-      item.innerText = letter.toUpperCase();
-      item.classList.add('draggable');
-      source.appendChild(item);
+    // reset and generate lists
+    function reset() {
+      const lists = document.querySelectorAll('#source,#target');
+      lists.forEach(list => {
+        while (list.firstChild) {
+          list.removeChild(list.firstChild);
+        }
+      });
+      createItems();
+      initSortable();
     }
+
+
+
+    // simulate drag and drop between lists
+    let dnd = new DragAndDrop('#source', "#target");
+
+    function moveToSource() {
+      dnd.moveToSource()
+    };
+
+    function moveToTarget() {
+      dnd.moveToTarget()
+    };
+
   </script>
 </body>
 

@@ -118,13 +118,3 @@ class CustomDataTransfer {
         this.data[type] = value;
     }
 }
-
-// TODO move to index.html
-// let dnd = new DragAndDrop('#source', "#target");
-
-// window.moveToSource = () => {
-//     dnd.moveToSource()
-// };
-// window.moveToTarget = () => {
-//     dnd.moveToTarget()
-// };
